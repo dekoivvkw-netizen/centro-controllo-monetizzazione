@@ -1,3 +1,4 @@
 PASSWORD.txt
 node_modules
 build/
+backup_*.json
