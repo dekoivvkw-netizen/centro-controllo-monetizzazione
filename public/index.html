@@ -1,0 +1,105 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Centro di Controllo – Monetizzazione</title>
+<style>
+*{box-sizing:border-box}
+:root{--c:#00f0ff;--m:#ff2bd6;--t:#e6f7ff;--mut:#8fb3c9;--glass:rgba(20,30,60,.45);--bd:rgba(0,240,255,.35)}
+body{margin:0;font-family:system-ui,-apple-system,sans-serif;color:var(--t);min-height:100vh;
+background:radial-gradient(1200px 600px at 10% -10%,rgba(0,240,255,.18),transparent 60%),radial-gradient(900px 500px at 110% 10%,rgba(255,43,214,.16),transparent 60%),#05070f;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);animation:scan 8s linear infinite}
+@keyframes scan{to{background-position:0 300px}}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@media (prefers-reduced-motion:reduce){body::before,header h1{animation:none!important}}
+a{color:var(--c);text-shadow:0 0 6px rgba(0,240,255,.5)}
+header{background:rgba(5,10,25,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:.8rem 1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;box-shadow:0 0 18px rgba(0,240,255,.15)}
+header h1{font-size:1.15rem;margin:0;background:linear-gradient(90deg,var(--c),#9d7bff,var(--m),var(--c));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s linear infinite;filter:drop-shadow(0 0 6px rgba(0,240,255,.45))}
+nav{display:flex;gap:.4rem;overflow-x:auto;background:rgba(5,10,25,.55);backdrop-filter:blur(12px);padding:.5rem;border-bottom:1px solid rgba(255,43,214,.25);position:sticky;top:0;z-index:5}
+nav button{border:1px solid var(--bd);background:rgba(0,240,255,.06);color:var(--t);padding:.55rem .9rem;border-radius:20px;cursor:pointer;white-space:nowrap;font-size:.9rem}
+nav button.on{background:linear-gradient(90deg,rgba(0,240,255,.35),rgba(255,43,214,.35));border-color:var(--m);box-shadow:0 0 12px rgba(255,43,214,.5),inset 0 0 8px rgba(0,240,255,.4);text-shadow:0 0 6px #fff}
+main{padding:1rem;max-width:1200px;margin:auto}section{display:none}section.on{display:block}
+h2,h3{color:var(--c);text-shadow:0 0 10px rgba(0,240,255,.55)}
+.card,.lead{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--bd);border-radius:14px;padding:1rem;margin-bottom:1rem;box-shadow:0 0 20px rgba(0,240,255,.08),inset 0 0 30px rgba(255,43,214,.04);position:relative}
+.lead{padding:.8rem;margin-bottom:.6rem;background:rgba(15,25,50,.5)}
+.card::after{content:"";position:absolute;inset:0;border-radius:14px;padding:1px;background:linear-gradient(120deg,rgba(0,240,255,.6),rgba(255,43,214,.5),rgba(157,123,255,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6}
+.bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem}
+input,select,textarea{font:inherit;padding:.45rem .55rem;border:1px solid var(--bd);border-radius:8px;background:rgba(0,10,25,.6);color:var(--t)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--m);box-shadow:0 0 10px rgba(255,43,214,.5)}
+select option{background:#0a1022}
+button.b,label.b{background:linear-gradient(90deg,#00c8e0,#c21fd0);color:#fff;border:0;padding:.5rem .9rem;border-radius:8px;cursor:pointer;box-shadow:0 0 12px rgba(0,240,255,.4);text-shadow:0 0 4px rgba(0,0,0,.5)}
+button.g,label.g{background:rgba(0,240,255,.08);border:1px solid var(--bd);color:var(--t);box-shadow:none}
+button.r{background:rgba(255,43,100,.12);color:#ff7fa8;border:1px solid rgba(255,43,100,.4);border-radius:8px;padding:.35rem .6rem;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{padding:.5rem;border-bottom:1px solid rgba(0,240,255,.12);text-align:left;vertical-align:top}th{background:rgba(0,240,255,.08);color:var(--c)}
+td input,td select,td textarea{width:100%}.tw{overflow-x:auto}
+.lead h3{margin:0 0 .3rem;font-size:1rem;color:#fff;text-shadow:0 0 8px rgba(0,240,255,.6)}.muted{color:var(--mut);font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.5rem;margin-top:.5rem}
+.grid label{font-size:.8rem;color:var(--mut);display:flex;flex-direction:column;gap:.2rem}
+.pill{display:inline-block;padding:.1rem .55rem;border-radius:10px;background:rgba(255,43,214,.1);border:1px solid rgba(255,43,214,.35);font-size:.78rem;color:#ffc4f3}
+.prog{height:12px;background:rgba(255,255,255,.07);border-radius:6px;overflow:hidden;border:1px solid var(--bd)}
+.prog>div{height:100%;background:linear-gradient(90deg,var(--c),var(--m),var(--c));background-size:200% auto;animation:shimmer 3s linear infinite;box-shadow:0 0 10px var(--c)}
+.md{line-height:1.6}.md table{font-size:.85rem}.md pre,.md code{background:rgba(0,10,25,.6);border-radius:6px}.md pre{white-space:pre-wrap;padding:.6rem;border:1px solid var(--bd)}
+.md strong{color:#fff}.md blockquote{border-left:3px solid var(--m);margin:0;padding-left:.8rem;color:var(--mut)}
+#toast{position:fixed;bottom:1rem;right:1rem;background:rgba(5,10,25,.85);border:1px solid var(--c);color:var(--c);box-shadow:0 0 14px rgba(0,240,255,.5);padding:.6rem 1rem;border-radius:8px;opacity:0;transition:.3s;z-index:60}#toast.on{opacity:1}
+.stats{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+@media(max-width:600px){main{padding:.6rem}th,td{padding:.35rem}}
+</style></head><body>
+<header><h1>Centro di Controllo – Monetizzazione <span class="muted">· Torino</span></h1><a href="/logout">Esci</a></header>
+<nav id="nav"></nav><main>
+<section id="lead"><div class="card"><div class="bar"><input id="q" placeholder="Cerca nome, zona, note…" style="flex:1;min-width:180px"><select id="fc"></select><select id="fs"></select><button class="b" onclick="addLead()">+ Aggiungi lead</button><button class="b g" onclick="exportCSV()">Esporta CSV</button></div><div class="stats" id="stats"></div><div id="leads"></div></div></section>
+<section id="task"><div class="card"><div class="tw"><table><thead><tr><th>Agente</th><th>Attività</th><th>Stato</th><th>Note</th><th></th></tr></thead><tbody id="tasks"></tbody></table></div><p><button class="b" onclick="S.tasks.push({agente:'',attivita:'',stato:'Da fare',note:''});save();rTasks()">+ Aggiungi riga</button></p></div></section>
+<section id="kpi"><div id="kpis"></div><button class="b" onclick="addWeek()">+ Aggiungi settimana</button></section>
+<section id="cont"><div class="card"><h2>Contenuti Settimana 1</h2><div class="md" id="c1">Caricamento…</div></div><div class="card"><h2>Guida Meta Business Suite</h2><div class="md" id="c2"></div></div></section>
+<section id="plan"><div class="card"><h2>File scaricabili</h2><div id="files"></div></div><div class="card"><h2>Listing</h2><div class="md" id="c3"></div></div></section>
+<section id="link"><div class="card"><h2>Canva</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://canva.link/gfzan6b248cm1uj">https://canva.link/gfzan6b248cm1uj</a></li>
+<li><a target="_blank" rel="noopener" href="https://canva.link/bpy4wa8vzhh51ok">https://canva.link/bpy4wa8vzhh51ok</a></li>
+<li><a target="_blank" rel="noopener" href="https://canva.link/k8486raghxik5xb">https://canva.link/k8486raghxik5xb</a></li>
+<li><a target="_blank" rel="noopener" href="https://canva.link/0ag3bkdf0jxnckv">https://canva.link/0ag3bkdf0jxnckv</a></li></ul>
+<h2>Notion</h2><ul><li><a target="_blank" rel="noopener" href="https://app.notion.com/p/40e3dbd60acd8133913fdca0e3f97ef1">Hub Notion</a></li></ul></div>
+<div class="card"><h2>Backup dati</h2><p class="muted">Scarica/ripristina tutti i dati (lead, task, KPI) in JSON. Consigliato periodicamente: il database gratuito non ha persistenza su disco.</p><button class="b g" onclick="backup()">Scarica backup JSON</button> <label class="b g">Ripristina… <input type="file" accept=".json" style="display:none" onchange="restore(this)"></label></div></section>
+</main><div id="toast"></div>
+<script>
+const STATI=['Da verificare','Da contattare','Contattato','Chiamata fissata','In prova','Cliente','Perso'];
+const TABS=[['lead','Lead PMI'],['task','Task Agenti'],['kpi','KPI'],['cont','Contenuti'],['plan','Planner'],['link','Link']];
+let S;const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(t){$('toast').textContent=t;$('toast').classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>$('toast').classList.remove('on'),1600)}
+let st;function save(){clearTimeout(st);st=setTimeout(async()=>{const r=await fetch('/api/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(S)});if(r.status==401)location.reload();toast(r.ok?'Salvato ✓':'Errore salvataggio')},400)}
+$('nav').innerHTML=TABS.map(([i,n])=>`<button data-t="${i}">${n}</button>`).join('');
+$('nav').onclick=e=>{const t=e.target.dataset.t;if(!t)return;show(t)};
+function show(t){document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id==t));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==t));location.hash=t}
+function rLeads(){const q=$('q').value.toLowerCase(),c=$('fc').value,s=$('fs').value;
+const L=S.leads.filter(l=>(!c||l.categoria==c)&&(!s||l.stato==s)&&(!q||[l.nome,l.zona,l.note,l.osservazione,l.contatto,l.categoria].join(' ').toLowerCase().includes(q)));
+$('stats').innerHTML=`<span class="pill"><b>${L.length}</b> / ${S.leads.length} lead</span>`+STATI.map(x=>`<span class="pill">${x}: ${S.leads.filter(l=>l.stato==x).length}</span>`).join('');
+$('leads').innerHTML=L.map(l=>`<div class="lead"><div style="display:flex;justify-content:space-between;gap:.5rem"><h3>${esc(l.nome)}</h3><button class="r" onclick="delLead(${l.id})">Elimina</button></div>
+<div class="muted"><span class="pill">${esc(l.categoria)}</span> ${esc(l.zona)}</div>
+<div class="muted">${l.sito?`🌐 <a target="_blank" rel="noopener" href="${esc(l.sito)}">${esc(l.sito)}</a> · `:''}📞 ${esc(l.contatto)} ${l.fonte?`· <a target="_blank" rel="noopener" href="${esc(l.fonte)}">Fonte</a>`:''}</div>
+${l.osservazione?`<div class="muted" style="margin-top:.3rem">${esc(l.osservazione)}</div>`:''}
+<div class="grid"><label>Stato<select onchange="upd(${l.id},'stato',this.value)">${STATI.map(x=>`<option ${x==l.stato?'selected':''}>${x}</option>`).join('')}</select></label>
+<label>Follow-up<input type="date" value="${esc(l.followup)}" onchange="upd(${l.id},'followup',this.value)"></label>
+<label style="grid-column:1/-1">Note<textarea rows="2" onchange="upd(${l.id},'note',this.value)">${esc(l.note)}</textarea></label></div></div>`).join('')||'<p class="muted">Nessun lead trovato.</p>'}
+function upd(id,k,v){S.leads.find(l=>l.id==id)[k]=v;save();if(k=='stato')rLeads()}
+function delLead(id){const l=S.leads.find(l=>l.id==id);if(confirm('Eliminare "'+l.nome+'"?')){S.leads=S.leads.filter(x=>x.id!=id);save();rLeads()}}
+function addLead(){const nome=prompt('Nome attività');if(!nome)return;const categoria=prompt('Categoria',$('fc').value||'')||'';const zona=prompt('Zona / indirizzo')||'';const contatto=prompt('Contatto (telefono/email)')||'';const sito=prompt('Sito web (opzionale)')||'';
+S.nextId=Math.max(S.nextId||0,...S.leads.map(l=>l.id))+1;S.leads.unshift({id:S.nextId,nome,categoria,zona,sito,contatto,osservazione:'',fonte:'',stato:'Da verificare',note:'',followup:''});save();fillCat();rLeads()}
+function fillCat(){const cs=[...new Set(S.leads.map(l=>l.categoria))].sort(),v=$('fc').value;$('fc').innerHTML='<option value="">Tutte le categorie</option>'+cs.map(c=>`<option ${c==v?'selected':''}>${esc(c)}</option>`).join('')}
+$('fs').innerHTML='<option value="">Tutti gli stati</option>'+STATI.map(s=>`<option>${s}</option>`).join('');
+['q','fc','fs'].forEach(i=>$(i).oninput=rLeads);
+function exportCSV(){const K=['id','nome','categoria','zona','sito','contatto','osservazione','fonte','stato','note','followup'];const c=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+dl('lead_PMI_Torino_export.csv','\ufeff'+[K.join(';'),...S.leads.map(l=>K.map(k=>c(l[k])).join(';'))].join('\r\n'),'text/csv')}
+function dl(n,t,m){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()}
+function rTasks(){$('tasks').innerHTML=S.tasks.map((t,i)=>`<tr>${['agente','attivita'].map(k=>`<td><input value="${esc(t[k])}" onchange="S.tasks[${i}].${k}=this.value;save()"></td>`).join('')}
+<td><select onchange="S.tasks[${i}].stato=this.value;save()">${[...new Set(['Da fare','In corso','Fatto','Attivo','Bloccato',t.stato])].map(x=>`<option ${x==t.stato?'selected':''}>${esc(x)}</option>`).join('')}</select></td>
+<td><input value="${esc(t.note)}" onchange="S.tasks[${i}].note=this.value;save()"></td><td><button class="r" onclick="if(confirm('Eliminare riga?')){S.tasks.splice(${i},1);save();rTasks()}">✕</button></td></tr>`).join('')}
+function rKpi(){$('kpis').innerHTML=S.kpi.map((w,i)=>`<div class="card"><div style="display:flex;justify-content:space-between;gap:.5rem"><input value="${esc(w.settimana)}" style="font-weight:600" onchange="S.kpi[${i}].settimana=this.value;save()">${i?`<button class="r" onclick="if(confirm('Eliminare settimana?')){S.kpi.splice(${i},1);save();rKpi()}">Elimina</button>`:''}</div>
+<div class="tw"><table><tr><th>Indicatore</th><th>Valore</th><th>Obiettivo</th><th style="width:35%">Avanzamento</th></tr>${w.voci.map((v,j)=>{const p=v.t?Math.min(100,Math.round(v.v/v.t*100)):0;return`<tr><td>${esc(v.n)}</td><td><input type="number" min="0" value="${v.v}" onchange="S.kpi[${i}].voci[${j}].v=+this.value;save();rKpi()"></td><td><input type="number" min="0" value="${v.t}" onchange="S.kpi[${i}].voci[${j}].t=+this.value;save();rKpi()"></td><td><div class="prog"><div style="width:${p}%"></div></div><span class="muted">${v.v}/${v.t} · ${p}%</span></td></tr>`}).join('')}
+<tr><td>Prodotto online</td><td colspan="3"><select onchange="S.kpi[${i}].prodotto=this.value;save()">${['No','Sì'].map(x=>`<option ${x==w.prodotto?'selected':''}>${x}</option>`).join('')}</select></td></tr>
+<tr><td>Newsletter</td><td colspan="3"><select onchange="S.kpi[${i}].newsletter=this.value;save()">${['No','Sì'].map(x=>`<option ${x==w.newsletter?'selected':''}>${x}</option>`).join('')}</select></td></tr>
+<tr><td>P&amp;L Revolut X (€)</td><td colspan="3"><input value="${esc(w.pnl)}" placeholder="—" onchange="S.kpi[${i}].pnl=this.value;save()"></td></tr></table></div></div>`).join('')}
+function addWeek(){const l=S.kpi[S.kpi.length-1];S.kpi.push({settimana:'Settimana '+(S.kpi.length+1),voci:l.voci.map(v=>({n:v.n,v:0,t:v.t})),prodotto:'No',newsletter:'No',pnl:''});save();rKpi()}
+function backup(){dl('backup_centro_controllo_'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(S,null,1),'application/json')}
+async function restore(inp){const f=inp.files[0];if(!f)return;try{const s=JSON.parse(await f.text());if(!s.leads||!s.tasks||!s.kpi)throw 0;if(!confirm('Sostituire tutti i dati attuali con il backup?'))return;S=s;save();fillCat();rLeads();rTasks();rKpi()}catch(e){alert('File non valido')}}
+const kb=n=>n>1e6?(n/1e6).toFixed(1)+' MB':Math.round(n/1e3)+' KB';
+(async()=>{const r=await fetch('/api/state');if(r.status==401)return location.reload();S=await r.json();fillCat();rLeads();rTasks();rKpi();show(TABS.some(t=>t[0]==location.hash.slice(1))?location.hash.slice(1):'lead');
+const c=await (await fetch('/api/content')).json();$('c1').innerHTML=c.settimana1;$('c2').innerHTML=c.guidaMeta;$('c3').innerHTML=c.listing;
+const top=c.files.filter(f=>/\.(xlsx|pdf|zip)$/i.test(f.n)),oth=c.files.filter(f=>!top.includes(f));
+const li=f=>`<li><a href="/file?n=${encodeURIComponent(f.n)}">${esc(f.n)}</a> <span class="muted">(${kb(f.size)})</span>${/\.(pdf|png)$/i.test(f.n)?` · <a target="_blank" href="/file?inline=1&n=${encodeURIComponent(f.n)}">apri</a>`:''}</li>`;
+$('files').innerHTML=`<h3>Excel, PDF, ZIP</h3><ul>${top.map(li).join('')}</ul><h3>Altri file</h3><ul>${oth.map(li).join('')}</ul>`})();
+</script></body></html>

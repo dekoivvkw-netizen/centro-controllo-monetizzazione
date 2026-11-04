@@ -1,0 +1,9 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Accesso – Centro di Controllo</title>
+<style>body{font-family:system-ui,sans-serif;margin:0;display:grid;place-items:center;min-height:100vh;color:#e6f7ff;background:radial-gradient(800px 500px at 20% 0%,rgba(0,240,255,.2),transparent 60%),radial-gradient(700px 500px at 100% 100%,rgba(255,43,214,.18),transparent 60%),#05070f}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+form{background:rgba(20,30,60,.45);backdrop-filter:blur(14px);border:1px solid rgba(0,240,255,.4);padding:2rem;border-radius:14px;box-shadow:0 0 30px rgba(0,240,255,.2);width:min(340px,90vw)}
+h1{font-size:1.15rem;color:#00f0ff;text-shadow:0 0 10px rgba(0,240,255,.7)}
+input,button{width:100%;padding:.7rem;margin-top:.6rem;border-radius:8px;border:1px solid rgba(0,240,255,.4);font-size:1rem;box-sizing:border-box;background:rgba(0,10,25,.6);color:#e6f7ff}
+button{background:linear-gradient(90deg,#00c8e0,#c21fd0);color:#fff;border:0;cursor:pointer;box-shadow:0 0 14px rgba(255,43,214,.5)}.e{color:#ff7fa8}</style></head>
+<body><form method="post" action="/login"><h1>🔒 Centro di Controllo – Monetizzazione</h1><input type="password" name="password" placeholder="Password" autofocus required><button>Accedi</button><p class="e" id="e"></p></form>
+<script>if(location.search.includes('err'))e.textContent='Password errata'</script></body></html>
